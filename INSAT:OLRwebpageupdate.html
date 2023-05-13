@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Update</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers&display=swap">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #0eed42;
+            background-image: url('https://i.redd.it/f47sfehbmnm71.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        h1 {
+            font-family: 'Bangers', Arial, sans-serif;
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+        h3 {
+            font-family: 'Bangers', Arial, sans-serif;
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+        .button-container {
+            margin-bottom: 20px;
+        }
+        button {
+            margin-right: 10px;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 10px;
+            justify-items: center;
+            align-items: center;
+        }
+        img {
+            max-width: 100%;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Real-time Indian Meteorological Dashboard</h1>
+    <h3>Welcome to the Real-time Indian Meteorological Dashboard, just like Drake and Lil Baby, we're 'Yes Indeed' your one-stop source for all things meteorological across India. We've got the coolest satellite images and data, so you can 'Laugh Now Cry Later' while exploring the ever-changing atmospheric patterns. With our dashboard, you can go 'Nonstop' and 'Drip Too Hard' into the world of weather. So,  jump in  and enjoy the laid-back, user-friendly dashboard that's straight up on point!</h3>
+    <h6> credits:- @ckd4real </h6>
+    <div class="button-container">
+        <button id="zoomIn">Zoom In</button>
+        <button id="zoomOut">Zoom Out</button>
+        <button id="rotateLeft">Rotate Left</button>
+        <button id="rotateRight">Rotate Right</button>
+    </div>
+    <div class="dashboard">
+        <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rs_olr.jpg" alt="Today's Update Image 1">
+        <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rswmo_ir1.jpg" alt="Today's Update Image 2">
+        <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rswmo_mp.jpg" alt="Today's Update Image 3">
+        <img class="updateImage" src="https://nwp.imd.gov.in/wrf/WRF3km-03-RAIN_24.png" alt="Today's Update Image 4">
+    </div>
+    <script>
+        const images = document.getElementsByClassName('updateImage');
+        const zoomInButton = document.getElementById('zoomIn');
+        const zoomOutButton = document.getElementById('zoomOut');
+        const rotateLeftButton = document.getElementById('rotateLeft');
+        const rotateRightButton = document.getElementById('rotateRight');
+
+        let scale = 1;
+        let rotation = 0;
+
+        function updateTransform() {
+            for (let img of images) {
+                img.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
+            }
+        }
+
+        zoomInButton.addEventListener('click', () => {
+            scale += 0.1;
+            updateTransform();
+        });
+
+        zoomOutButton.addEventListener('click', () => {
+            scale -= 0.1;
+            if (scale < 0.1) {
+                scale = 0.1;
+            }
+            updateTransform();
+        });
+
+        rotateLeftButton.addEventListener('click', () => {
+            rotation -= 5;
+            updateTransform();
+        });
+
+        rotateRightButton.addEventListener('click', () => {
+            rotation += 5;
+            updateTransform();
+        });
+    </script>
+</body>
+</html>
