@@ -3,86 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Today's Update</title>
+    <title>INSAT</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers&display=swap">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: #0eed42;
-            background-image: url('https://i.redd.it/f47sfehbmnm71.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-        h1 {
-            font-family: 'Bangers', Arial, sans-serif;
-            font-size: 3em;
-            margin-bottom: 30px;
-        }
-        h3 {
-            font-family: 'Bangers', Arial, sans-serif;
-            font-size: 1em;
-            margin-bottom: 30px;
-        }
-        .button-container {
-            margin-bottom: 20px;
-        }
-        button {
-            margin-right: 10px;
-        }
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            grid-gap: 10px;
-            justify-items: center;
-            align-items: center;
-        }
-        img {
-            max-width: 100%;
-            margin: 10px;
-            box-sizing: border-box;
-        }
-    </style>
+<style>
+
+body::before {
+    content: "";
+    background: url('https://i.redd.it/f47sfehbmnm71.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed; /* Add this line */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 90;
+    z-index: -1;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #0eed42;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    padding: 10px;
+    margin: 0;
+}  
+
+h1 {
+    font-family: 'Bangers', Arial, sans-serif;
+    font-size: 5em;
+    margin-bottom: 20px;
+    color: #0eed42;
+    text-shadow: -2px -2px 0 #000,  
+                  2px -2px 0 #000,
+                 -2px 2px 0 #000,
+                  2px 2px 0 #000;
+}
+
+h3 {
+    font-family: 'Bangers', Arial, sans-serif;
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #fa0808;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                  1px 1px 0 #000;
+}
+h4 {
+    font-family: 'Bangers', Arial, sans-serif;
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    color: #0bb5fe;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                  1px 1px 0 #000;
+}
+h6 {
+    font-family: 'Bangers', Arial, sans-serif;
+    margin-bottom: 30px;
+    color: #e40a73;
+    text-shadow: -1px -1px 0 #000,  
+                  1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                  1px 1px 0 #000;
+}
+/* Media queries for responsive font sizes */
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 5em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+}
+@media screen and (min-width: 768px) {
+    body {
+        padding: 40px;
+    }
+}
+
+@keyframes textFade {
+        0% { color: #0874f9; }
+        50% { color: #10d92b; }
+        75% { color: #d5ed23; }
+        100% { color: #0874f9; }
+     }
+
+.button-container {
+    margin-bottom: 20px;
+    padding: 20px;
+}
+button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #0eed42;
+    color: rgb(14, 14, 14);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+button:hover {
+    background-color: #ef3c2c;
+    transform: translateY(-3px); /* Slightly move button up on hover */
+
+}
+.dashboard {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
+    align-items: center;
+    grid-gap: 10px;
+    padding: 50px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    margin-bottom: 80px;
+}
+
+/* Add hover effect */
+.dashboard > div:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15); /* Add box-shadow */
+}
+
+/* Add responsive design */
+@media screen and (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+/* Styles for the child divs, assuming they have a class 'image-container' */
+.twitter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.image-container:hover {
+    transform: scale(1.15);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+img {
+    max-width: 100%;
+    margin: 2px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+.image-title {
+    font-size: 1rem;
+    margin: 5px 0;
+    text-align: center;
+    word-wrap: break-word;
+    padding: 10px;
+    display: inline-block;
+} 
+.updateImage {
+    border: 5px solid #fff;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.updateImage:hover {
+    box-shadow: 0px 20px 40px rgba(165, 145, 145, 0.246);
+}
+.twitter-widget {
+    width: 300px; 
+    height: 500px; 
+    overflow: auto; 
+    margin-right: 20px;
+}
+
+.footer {
+    color: #ffffff; 
+    padding: 20px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    box-shadow: 0px -10px 20px rgba(0,0,0,0.1); 
+    transition: background-color 0.5s ease, transform 0.3s ease; 
+    border-radius: 20px;
+}
+
+
+
+/* Media query for smaller devices */
+@media (max-width: 600px) {
+    .twitter-widget {
+        width: 100%; 
+        height: 300px;
+        margin-right: 0;
+    }
+    
+    .twitter-container {
+        flex-direction: column;
+    }
+}
+
+
+</style>
 </head>
 <body>
-    <h1>Real-time Indian Meteorological Dashboard</h1>
-    <h3>Welcome to the Real-time Indian Meteorological Dashboard, just like Drake and Lil Baby, we're 'Yes Indeed' your one-stop source for all things meteorological across India. We've got the coolest satellite images and data, so you can 'Laugh Now Cry Later' while exploring the ever-changing atmospheric patterns. With our dashboard, you can go 'Nonstop' and 'Drip Too Hard' into the world of weather. So,  jump in  and enjoy the laid-back, user-friendly dashboard that's straight up on point!</h3>
-    <h6> credits:- @ckd4real </h6>
-    <div class="button-container">
-        <button id="zoomIn">Zoom In</button>
-        <button id="zoomOut">Zoom Out</button>
-        <button id="rotateLeft">Rotate Left</button>
-        <button id="rotateRight">Rotate Right</button>
-    </div>
-    <div class="dashboard">
-        <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rs_olr.jpg" alt="Today's Update Image 1">
-        <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rswmo_ir1.jpg" alt="Today's Update Image 2">
-        <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rswmo_mp.jpg" alt="Today's Update Image 3">
-        <img class="updateImage" src="https://nwp.imd.gov.in/wrf/WRF3km-03-RAIN_24.png" alt="Today's Update Image 4">
-    </div>
-    <script>
-        const images = document.getElementsByClassName('updateImage');
-        const zoomInButton = document.getElementById('zoomIn');
-        const zoomOutButton = document.getElementById('zoomOut');
-        const rotateLeftButton = document.getElementById('rotateLeft');
-        const rotateRightButton = document.getElementById('rotateRight');
+<h1 style="font-size: 5.2em; text-align: center; animation: textFade 5s infinite;">Indian Satellite Imaging Dashboard</h1>
 
+<div class="dashboard">
+
+    <div class="image-container">
+        <h4 class="image-title">Outgoing Longwave Radiation (OLR)</h4>
+        <div class="modal" id="modal1">
+            <div class="modal-content">
+                <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rs_olr.jpg" alt="Today's Update Image 1">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h4 class="image-title">Infrared Channel 10.8µm</h4>
+        <div class="modal" id="modal2">
+            <div class="modal-content">
+                <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rswmo_ir1.jpg" alt="Today's Update Image 2">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h4 class="image-title">Day Microphysics</h4>
+        <div class="modal" id="modal3">
+            <div class="modal-content">
+                <img class="updateImage" src="https://mausam.imd.gov.in/Satellite/rswmo_mp.jpg" alt="Today's Update Image 3">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h4 class="image-title">Constant Altitude Plan Position Indicator(Delhi Radar)</h4>
+        <div class="modal" id="modal3">
+            <div class="modal-content">
+                <img class="updateImage" src="https://mausam.imd.gov.in/Radar/caz_delhi.gif" alt="Today's Update Image 3">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h4 class="image-title">Plan Position Indicator (Delhi Radar)</h4>
+        <div class="modal" id="modal3">
+            <div class="modal-content">
+                <img class="updateImage" src= "https://mausam.imd.gov.in/Radar/ppi_delhi.gif" alt="Today's Update Image 3">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h4 class="image-title">Storm Realative Intensity (Delhi Radar)</h4>
+        <div class="modal" id="modal3">
+            <div class="modal-content">
+                <img class="updateImage" src= "https://mausam.imd.gov.in/Radar/sri_delhi.gif" alt="Today's Update Image 3">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h4 class="image-title">Precipitation Accumulation (Delhi Radar)</h4>
+        <div class="modal" id="modal3">
+            <div class="modal-content">
+                <img class="updateImage" src= "https://mausam.imd.gov.in/Radar/pac_delhi.gif" alt="Today's Update Image 3">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h4 class="image-title">Meoscale Model (03KM,03HR)</h4>
+        <div class="modal" id="modal4">
+            <div class="modal-content">
+                <img class="updateImage" src="https://nwp.imd.gov.in/wrf/WRF3km-03-RAIN_24.png" alt="Today's Update Image 4">
+                <div class="button-container">
+                    <button class="zoomIn">Zoom In</button>
+                    <button class="zoomOut">Zoom Out</button>
+                    <button class="rotateLeft">Rotate Left</button>
+                    <button class="rotateRight">Rotate Right</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div style="display: flex; justify-content: space-between;">
+      <div class="twitter-widget">
+        <a class="twitter-timeline" href="https://twitter.com/Indiametdept?ref_src=twsrc%5Etfw">Tweets by Indiametdept</a>
+      </div>
+      <div class="twitter-widget">
+        <a class="twitter-timeline" href="https://twitter.com/GoaImd?ref_src=twsrc%5Etfw">Tweets by GoaImd</a>
+      </div>
+      <div class="twitter-widget">
+          <a class="twitter-timeline" href="https://twitter.com/NCS_Earthquake?ref_src=twsrc%5Etfw">Tweets by NCS_Earthquake</a>
+      </div>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+        <h3 style="font-size: 1em; text-align: center; animation: textFade 5s infinite;">Welcome to the Real-time Indian Meteorological Dashboard, just like Drake and Lil Baby, we're 'Yes Indeed' your one-stop source for all things meteorological across India. We've got the coolest satellite images and data, so you can 'Laugh Now Cry Later' while exploring the ever-changing atmospheric patterns. With our dashboard, you can go 'Nonstop' and 'Drip Too Hard' into the world of weather. So,  jump in  and enjoy the laid-back, user-friendly dashboard that's straight up on point!</h3>
+        <h6> credits:- @ckd4real </h6>                                             
+</footer>
+
+<script>
+
+const footer = document.querySelector('footer');
+
+footer.addEventListener('mouseover', () => {
+    footer.style.transform = 'scale(1.03)';
+    footer.style.backgroundColor = '#ef3c2c';
+});
+
+footer.addEventListener('mouseout', () => {
+    footer.style.transform = 'scale(1)';
+    footer.style.backgroundColor = '#0bb5fe';
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+const images = document.querySelectorAll('.updateImage');
+const modals = document.querySelectorAll('.modal');
+
+    // Open modal on image click
+images.forEach((image, i) => {
+    image.addEventListener('click', () => {
+         modals[i].style.display = 'block';
+    });
+});
+
+    // Close modal on background click
+    modals.forEach((modal) => {
+        modal.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+
+    const zoomInButtons = document.querySelectorAll('.zoomIn');
+    const zoomOutButtons = document.querySelectorAll('.zoomOut');
+    const rotateLeftButtons = document.querySelectorAll('.rotateLeft');
+    const rotateRightButtons = document.querySelectorAll('.rotateRight');
+
+    // Button functionality
+    images.forEach((image, i) => {
         let scale = 1;
         let rotation = 0;
 
         function updateTransform() {
-            for (let img of images) {
-                img.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
-            }
+            image.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
         }
 
-        zoomInButton.addEventListener('click', () => {
+        zoomInButtons[i].addEventListener('click', () => {
             scale += 0.1;
             updateTransform();
         });
 
-        zoomOutButton.addEventListener('click', () => {
+        zoomOutButtons[i].addEventListener('click', () => {
             scale -= 0.1;
             if (scale < 0.1) {
                 scale = 0.1;
@@ -90,15 +429,19 @@
             updateTransform();
         });
 
-        rotateLeftButton.addEventListener('click', () => {
+        rotateLeftButtons[i].addEventListener('click', () => {
             rotation -= 5;
             updateTransform();
         });
 
-        rotateRightButton.addEventListener('click', () => {
-            rotation += 5;
+        rotateRightButtons[i].addEventListener('click', () => {
+            rotation +=5;
             updateTransform();
-        });
+            });
+            });
+            });
+
     </script>
+
 </body>
 </html>
